@@ -1,0 +1,20 @@
+github:
+  org: luzdealba
+  repo: luzdealba.github.io
+  default_branch: main
+
+project:
+  number: 9
+  id: PVT_kwHOAKlD084BTvm-
+
+fields:
+  minutes:
+    id: PVTF_lAHOAKlD084BTvm-zhA8ddA
+  start:
+    id: PVTF_lAHOAKlD084BTvm-zhA8dc4
+  priority:
+    id: PVTSSF_lAHOAKlD084BTvm-zhA8ddE
+    options:
+      p0: 0bd0db19
+      p1: d6cd6eba
+      p2: 9b4820d8
