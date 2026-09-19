@@ -54,8 +54,8 @@ export const projects: Project[] = [
 		category: 'Ventures & Leadership',
 		outcome: 'Automates compliance workflows for businesses across Southeast Asia.',
 		tech: ['Harness engineering', 'TypeScript', 'Node.js'],
-		url: 'https://github.com/anakotai',
-		linkLabel: 'github.com/anakotai',
+		url: 'https://demo.anakotai.com/',
+		linkLabel: 'demo.anakotai.com',
 		featured: true,
 		year: '2025',
 	},
@@ -159,6 +159,8 @@ export const projects: Project[] = [
 		outcome:
 			'Built the back end for campaigns, banner rotation, cookie management, and segmentation.',
 		tech: ['Linux', 'Apache', 'MySQL', 'PHP'],
+		url: 'https://drive.google.com/file/d/0BykIuP0J6kLHZlN4SzlmdENRc0E/view?resourcekey=0-9swYpFz42Cy0n6JJd7jJzA',
+		linkLabel: 'DB schema',
 	},
 	{
 		name: 'Telam SE Correspondence DB',
@@ -274,7 +276,11 @@ export const certGroups: CertGroup[] = [
 		docAnchor:
 			'https://docs.google.com/document/d/1nSC5hrvoHY8MDT2mLuhidBZYBx6HPgY62gFsivW6JCQ/edit?tab=t.0#heading=h.32pk68z304mh',
 		items: [
-			{ name: 'Machine Learning', provider: 'Stanford University' },
+			{
+				name: 'Machine Learning',
+				provider: 'Stanford University',
+				url: 'https://drive.google.com/file/d/0BykIuP0J6kLHQURsS2RVMDhFZEU/view?resourcekey=0-aMkKB5GeLra8d14nYHBEbg',
+			},
 			{ name: 'Learning from Data', provider: 'California Institute of Technology', url: 'https://verify.edx.org/cert/8a498f4c3dc74aff9cf03498a47c21f0' },
 			{ name: 'Data Analysis and Statistical Inference', provider: 'Duke University', url: 'https://coursera.org/verify/4PNFN9682C' },
 			{ name: 'Intro to Statistics', provider: 'UC Berkeley', url: 'https://verify.edx.org/cert/f875e4077df64715ba5a5f4309dddeb1' },
