@@ -1,0 +1,229 @@
+---
+import Header from '../components/site/Header.astro';
+import Footer from '../components/site/Footer.astro';
+import '../styles/site.css';
+import { orderedProjects } from '../data/profile.ts';
+
+const categoryOrder = ['Ventures & Leadership', 'Software Development', 'Technical Writing'];
+const categories = categoryOrder.filter((c) => orderedProjects.some((p) => p.category === c));
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta
+			name="description"
+			content="Projects by Emiliano Bazaes — ventures, systems, and technical writing across two decades of shipping software."
+		/>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>Projects — Emiliano Bazaes</title>
+	</head>
+	<body class="site">
+		<Header current="projects" />
+
+		<main class="container">
+			<header class="page-head">
+				<p class="eyebrow">Portfolio</p>
+				<h1>Projects</h1>
+				<p class="lede">
+					Twenty years of shipping: ventures I founded or led, systems I engineered, and writing
+					that explains the work.
+				</p>
+			</header>
+
+			<div class="filters no-print" role="group" aria-label="Filter projects">
+				<button class="filter active" type="button" data-filter="all">All</button>
+				{categories.map((c) => (
+					<button class="filter" type="button" data-filter={c}>{c}</button>
+				))}
+			</div>
+
+			<div class="grid">
+				{orderedProjects.map((p) => (
+					<article class="card" data-category={p.category}>
+						<div class="card-top">
+							<span class="tag" data-cat={p.category}>{p.category}</span>
+							{p.year && <span class="year">{p.year}</span>}
+						</div>
+						<h3>{p.name}</h3>
+						<p class="meta">{p.role}</p>
+						<p class="outcome">{p.outcome}</p>
+						<div class="chips">
+							{p.tech.map((t) => <span class="chip">{t}</span>)}
+						</div>
+						<div class="card-links">
+							{p.links
+								? p.links.map((l) => (
+										<a class="card-link" href={l.url} target="_blank" rel="noopener">
+											{l.label} ↗
+										</a>
+									))
+								: p.url && (
+										<a class="card-link" href={p.url} target="_blank" rel="noopener">
+											{p.linkLabel ?? 'Visit'} ↗
+										</a>
+									)}
+						</div>
+					</article>
+				))}
+			</div>
+
+			<p class="empty" hidden>No projects in this category.</p>
+		</main>
+
+		<Footer />
+
+		<script>
+			const buttons = document.querySelectorAll<HTMLButtonElement>('.filter');
+			const cards = document.querySelectorAll<HTMLElement>('.card[data-category]');
+			const empty = document.querySelector<HTMLElement>('.empty');
+
+			buttons.forEach((btn) => {
+				btn.addEventListener('click', () => {
+					const filter = btn.dataset.filter;
+					buttons.forEach((b) => b.classList.toggle('active', b === btn));
+					let visible = 0;
+					cards.forEach((card) => {
+						const show = filter === 'all' || card.dataset.category === filter;
+						card.hidden = !show;
+						if (show) visible++;
+					});
+					if (empty) empty.hidden = visible > 0;
+				});
+			});
+		</script>
+	</body>
+</html>
+
+<style>
+	main {
+		padding-block: clamp(2.5rem, 6vh, 4rem) 2rem;
+	}
+
+	.page-head {
+		max-width: 46rem;
+		margin-bottom: 2rem;
+	}
+
+	h1,
+	h2,
+	h3 {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-weight: 600;
+	}
+
+	h1 {
+		font-size: clamp(2.2rem, 1.6rem + 3vw, 3.4rem);
+	}
+
+	.filters {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-bottom: 1.8rem;
+	}
+
+	.filter {
+		font: inherit;
+		font-size: 0.85rem;
+		font-weight: 600;
+		padding: 0.4rem 0.9rem;
+		border-radius: 999px;
+		border: 1px solid var(--rule);
+		background: var(--surface);
+		color: var(--muted);
+		cursor: pointer;
+	}
+
+	.filter:hover {
+		color: var(--fg);
+	}
+
+	.filter.active {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: #fff;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(19rem, 100%), 1fr));
+		gap: 1.1rem;
+	}
+
+	.card {
+		display: flex;
+		flex-direction: column;
+		background: var(--surface);
+		border: 1px solid var(--rule);
+		border-radius: var(--radius);
+		padding: 1.4rem;
+		box-shadow: var(--shadow);
+	}
+
+	.card[hidden] {
+		display: none;
+	}
+
+	.card-top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.9rem;
+	}
+
+	.tag {
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--accent);
+		background: var(--accent-soft);
+		border-radius: 999px;
+		padding: 0.2rem 0.6rem;
+	}
+
+	.year {
+		font-size: 0.8rem;
+		color: var(--muted);
+	}
+
+	.card h3 {
+		margin-bottom: 0.1rem;
+	}
+
+	.meta {
+		color: var(--muted);
+		font-size: 0.85rem;
+		margin: 0 0 0.7rem;
+	}
+
+	.outcome {
+		font-size: 0.95rem;
+		margin: 0 0 1rem;
+	}
+
+	.card .chips {
+		margin-top: auto;
+	}
+
+	.card-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	.card-link {
+		font-size: 0.85rem;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.empty {
+		text-align: center;
+		color: var(--muted);
+		padding: 3rem;
+	}
+</style>

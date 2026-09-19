@@ -1,0 +1,48 @@
+---
+import { profile, RESUME_PDF_URL } from '../../data/profile.ts';
+---
+
+<footer class="footer no-print">
+	<div class="container inner">
+		<div>
+			<h2>Reach out, I'm happy to talk.</h2>
+		</div>
+		<div class="cta">
+			<a class="btn btn-primary" href={`mailto:${profile.email}`}>Email</a>
+			<a class="btn" href={profile.whatsapp} target="_blank" rel="noopener">WhatsApp</a>
+			<a class="btn" href={profile.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+			<a class="btn" href={profile.github} target="_blank" rel="noopener">GitHub</a>
+			<a class="btn" href={profile.instagram} target="_blank" rel="noopener">Instagram</a>
+			<a class="btn" href={RESUME_PDF_URL} download>Résumé (PDF)</a>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		margin-top: 3rem;
+		background: var(--surface-2);
+		border-top: 1px solid var(--rule);
+	}
+
+	.inner {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		padding-block: clamp(2.5rem, 6vh, 4rem);
+	}
+
+	h2 {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-weight: 600;
+		margin: 0;
+	}
+
+	.cta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+	}
+</style>

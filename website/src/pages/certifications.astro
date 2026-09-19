@@ -1,0 +1,198 @@
+---
+import Header from '../components/site/Header.astro';
+import Footer from '../components/site/Footer.astro';
+import '../styles/site.css';
+import { certGroups } from '../data/profile.ts';
+
+const DOC_URL =
+	'https://docs.google.com/document/d/1nSC5hrvoHY8MDT2mLuhidBZYBx6HPgY62gFsivW6JCQ/edit';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta
+			name="description"
+			content="Certifications and training by Emiliano Bazaes — 80+ verified courses in AI agents, data, computer science, finance, and management."
+		/>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>Certifications & Training — Emiliano Bazaes</title>
+	</head>
+	<body class="site">
+		<Header current="certifications" />
+
+		<main class="container">
+			<header class="page-head">
+				<p class="eyebrow">Continuous learning</p>
+				<h1>Certifications &amp; Training</h1>
+				<p class="lede">
+					80+ verified courses across AI agent engineering, data and computer science, and the
+					economics of building companies; from Anthropic and OpenAI to Stanford, Caltech, Yale, and
+					Wharton.
+				</p>
+				<div class="summary">
+					<span><strong>80+</strong> certificates</span>
+					<span><strong>3</strong> domains</span>
+					<span><strong>30+</strong> institutions</span>
+				</div>
+				<a class="btn btn-primary hero-cta" href={DOC_URL} target="_blank" rel="noopener">
+					View the complete list (80+) ↗
+				</a>
+			</header>
+
+			{certGroups.map((g, i) => (
+				<section class:list={['group', { dark: i % 2 === 0 }]}>
+					<div class="group-head">
+						<div>
+							<span class="index">{String(i + 1).padStart(2, '0')}</span>
+							<h2>{g.title}</h2>
+							<p class="muted">{g.blurb}</p>
+						</div>
+						<a class="badge-link" href={g.docAnchor} target="_blank" rel="noopener">
+							See all {g.count} certificates ↗
+						</a>
+					</div>
+					<ul class="items">
+						{g.items.map((it) => (
+							<li>
+								<span class="name">
+									{it.url ? <a href={it.url} target="_blank" rel="noopener">{it.name}</a> : it.name}
+								</span>
+								<span class="provider">{it.provider}</span>
+							</li>
+						))}
+					</ul>
+				</section>
+			))}
+		</main>
+
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		padding-block: clamp(2.5rem, 6vh, 4rem);
+	}
+
+	.page-head {
+		max-width: 52rem;
+		margin-bottom: 1rem;
+	}
+
+	h1,
+	h2 {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-weight: 600;
+	}
+
+	h1 {
+		font-size: clamp(2.2rem, 1.6rem + 3vw, 3.4rem);
+	}
+
+	.summary {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.5rem;
+		margin-top: 1.8rem;
+		color: var(--muted);
+		font-size: 0.9rem;
+	}
+
+	.summary strong {
+		display: block;
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: clamp(1.35rem, 1.1rem + 0.9vw, 1.8rem);
+		font-weight: 600;
+		color: var(--fg);
+	}
+
+	.hero-cta {
+		margin-top: 1.5rem;
+	}
+
+	.group {
+		padding-block: 2rem;
+	}
+
+	.group.dark {
+		background: var(--surface-2);
+		border: 1px solid var(--rule);
+		border-radius: var(--radius);
+		padding: 2rem;
+		margin-block: 1.5rem;
+	}
+
+	.group-head {
+		display: flex;
+		align-items: start;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.group-head h2 {
+		margin: 0.2rem 0 0.3rem;
+	}
+
+	.index {
+		font-size: 0.8rem;
+		font-weight: 700;
+		color: var(--accent);
+		letter-spacing: 0.1em;
+	}
+
+	.badge-link {
+		display: inline-block;
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: var(--accent);
+		border: 1px solid var(--accent);
+		border-radius: 999px;
+		padding: 0.32rem 0.85rem;
+		text-decoration: none;
+		white-space: nowrap;
+		transition: background 0.15s ease, color 0.15s ease;
+	}
+
+	.badge-link:hover {
+		background: var(--accent);
+		color: #fff;
+	}
+
+	.items {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(22rem, 100%), 1fr));
+		gap: 0.1rem 2rem;
+	}
+
+	.items li {
+		display: block;
+		padding: 0.6rem 0;
+	}
+
+	.name {
+		display: block;
+		font-weight: 600;
+	}
+
+	.provider {
+		display: block;
+		color: var(--muted);
+		font-size: 0.82rem;
+		margin-top: 0.1rem;
+	}
+
+	@media (max-width: 720px) {
+		.items {
+			grid-template-columns: 1fr;
+		}
+		.group-head {
+			flex-direction: column;
+		}
+	}
+</style>

@@ -1,126 +1,540 @@
 ---
-import { marked } from 'marked';
-
-const README_URL = 'https://raw.githubusercontent.com/luzdealba/luzdealba/main/README.md';
-
-const response = await fetch(README_URL);
-if (!response.ok) {
-	throw new Error(`Failed to fetch README.md (${response.status} ${response.statusText}) from ${README_URL}`);
-}
-
-const content = await marked.parse(await response.text());
+import Header from '../components/site/Header.astro';
+import Footer from '../components/site/Footer.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
+import '../styles/site.css';
+import {
+	profile,
+	stats,
+	featuredProjects,
+	certGroups,
+	beyond,
+	VIDEO_ID,
+	RESUME_PDF_URL,
+} from '../data/profile.ts';
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content="Emiliano Bazaes — software engineer from Argentina, living in Thailand." />
+		<meta
+			name="description"
+			content="Emiliano Bazaes — software engineer specialising in agentic loops, evals, and harness engineering. Portfolio, projects, and certifications."
+		/>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>Emiliano Bazaes</title>
+		<title>Emiliano Bazaes — Software Engineer</title>
 	</head>
-	<body>
+	<body class="site">
+		<Header current="home" />
+
 		<main>
-			<article set:html={content} />
+			<section class="hero container">
+				<div class="intro">
+					<h1>I'm Emiliano</h1>
+					<p class="role">Software Engineer · AI Loops · QA</p>
+					<p class="lede">
+						{profile.tagline} I built and led engineering for venture-backed products end to end.
+						I've shipped high-availability DevOps and systems that run themselves.
+					</p>
+					<div class="cta">
+						<a class="btn btn-primary" href="#watch">▶ Watch intro</a>
+						<a class="btn" href={RESUME_PDF_URL} download>Download résumé</a>
+						<a class="btn btn-ghost" href={`mailto:${profile.email}`}>Email</a>
+					</div>
+				</div>
+				<div class="portrait">
+					<img
+						src={profile.photo}
+						alt={`Portrait of ${profile.name}`}
+						width="1040"
+						height="1300"
+						fetchpriority="high"
+					/>
+				</div>
+				<dl class="stats">
+					{stats.map((s) => (
+						<div>
+							<dt>{s.value}</dt>
+							<dd>{s.label}</dd>
+						</div>
+					))}
+				</dl>
+			</section>
+
+			<section id="watch" class="band">
+				<div class="container">
+					<p class="eyebrow">Meet me</p>
+					<h2>Ninety seconds, in my own words.</h2>
+					<div class="video-wrap">
+						<VideoEmbed id={VIDEO_ID} />
+					</div>
+				</div>
+			</section>
+
+			<section class="section container">
+				<div class="section-head">
+					<div>
+						<p class="eyebrow">Selected projects</p>
+						<h2>Work I'm proud of.</h2>
+					</div>
+					<a class="btn" href="/projects">All projects →</a>
+				</div>
+				<div class="grid">
+					{featuredProjects.map((p) => (
+						<article class="card" data-category={p.category}>
+							<div class="card-top">
+								<span class="tag" data-cat={p.category}>{p.category}</span>
+								{p.year && <span class="year">{p.year}</span>}
+							</div>
+							<h3>{p.name}</h3>
+							<p class="meta">{p.role}</p>
+							<p class="outcome">{p.outcome}</p>
+							<div class="chips" data-chip-collapse>
+								{p.tech.map((t) => <span class="chip">{t}</span>)}
+								<button class="chip-toggle" type="button" hidden>+0</button>
+							</div>
+							<div class="card-links">
+								{p.links
+									? p.links.map((l) => (
+											<a class="card-link" href={l.url} target="_blank" rel="noopener">
+												{l.label} ↗
+											</a>
+										))
+									: p.url && (
+											<a class="card-link" href={p.url} target="_blank" rel="noopener">
+												{p.linkLabel ?? 'Visit'} ↗
+											</a>
+										)}
+							</div>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<section class="band">
+				<div class="container">
+					<div class="section-head">
+						<div>
+							<p class="eyebrow">Credentials</p>
+							<h2>80+ certificates and counting.</h2>
+						</div>
+						<a class="btn" href="/certifications">See all →</a>
+					</div>
+					<div class="cert-row">
+						{certGroups.map((g) => (
+							<a class="cert-card" href="/certifications">
+								<span class="badge">{g.count} certificates</span>
+								<h3>{g.title}</h3>
+								<p class="muted">{g.blurb}</p>
+							</a>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section id="beyond" class="section container">
+				<p class="eyebrow">Beyond work</p>
+				<h2>More than a commit history.</h2>
+				<div class="beyond-grid">
+					{beyond.map((b) => (
+						<article>
+							<h3>{b.title}</h3>
+							<p class="muted">{b.body}</p>
+							{b.url && (
+								<a class="card-link" href={b.url} target="_blank" rel="noopener">{b.linkLabel} ↗</a>
+							)}
+						</article>
+					))}
+				</div>
+			</section>
 		</main>
+
+		<Footer />
+
+		<script>
+			function fitChips(container: HTMLElement) {
+				if (container.dataset.expanded === '1') return;
+				const chips = Array.from(container.querySelectorAll<HTMLElement>('.chip'));
+				const toggle = container.querySelector<HTMLButtonElement>('.chip-toggle');
+				if (!toggle || chips.length === 0) return;
+
+				chips.forEach((c) => (c.hidden = false));
+				toggle.hidden = true;
+				container.style.flexWrap = 'nowrap';
+
+				const gap = parseFloat(getComputedStyle(container).columnGap) || 6;
+				const available = container.clientWidth;
+				const widths = chips.map((c) => c.getBoundingClientRect().width);
+				const total = widths.reduce((a, b) => a + b, 0) + gap * Math.max(0, chips.length - 1);
+
+				if (total <= available) {
+					container.style.flexWrap = 'wrap';
+					return;
+				}
+
+				toggle.hidden = false;
+				toggle.textContent = '+0';
+				const toggleWidth = toggle.getBoundingClientRect().width;
+
+				let visible = 0;
+				let used = 0;
+				for (let i = 0; i < chips.length; i++) {
+					const next = used + (i ? gap : 0) + widths[i];
+					if (next + gap + toggleWidth <= available) {
+						used = next;
+						visible++;
+					} else {
+						break;
+					}
+				}
+
+				const hidden = chips.length - visible;
+
+				// A lone "+1" is noise: show the leftover chip on a second line instead.
+				if (hidden <= 1) {
+					chips.forEach((c) => (c.hidden = false));
+					container.style.flexWrap = 'wrap';
+					toggle.hidden = true;
+					return;
+				}
+
+				chips.forEach((c, i) => (c.hidden = i >= visible));
+				toggle.textContent = `+${hidden}`;
+			}
+
+			function fitAllChips() {
+				document.querySelectorAll<HTMLElement>('[data-chip-collapse]').forEach(fitChips);
+			}
+
+			document.querySelectorAll<HTMLButtonElement>('.chip-toggle').forEach((toggle) => {
+				toggle.addEventListener('click', () => {
+					const container = toggle.closest<HTMLElement>('[data-chip-collapse]');
+					if (!container) return;
+					container.dataset.expanded = '1';
+					container.querySelectorAll<HTMLElement>('.chip').forEach((c) => (c.hidden = false));
+					container.style.flexWrap = 'wrap';
+					toggle.hidden = true;
+				});
+			});
+
+			const runChips = () => requestAnimationFrame(fitAllChips);
+			if (document.readyState === 'complete') runChips();
+			else window.addEventListener('load', runChips);
+			document.fonts?.ready.then(runChips);
+
+			let timer: number | undefined;
+			window.addEventListener('resize', () => {
+				window.clearTimeout(timer);
+				timer = window.setTimeout(fitAllChips, 150);
+			});
+		</script>
 	</body>
 </html>
 
-<style is:global>
-	:root {
-		--bg: #fbfaf7;
-		--fg: #1a1a1a;
-		--muted: #6b6b6b;
-		--accent: #b4482a;
-		--rule: #e3ded4;
-		color-scheme: light dark;
-	}
-
-	@media (prefers-color-scheme: dark) {
-		:root {
-			--bg: #14130f;
-			--fg: #ece8e1;
-			--muted: #9a948a;
-			--accent: #e08a6b;
-			--rule: #2c2a24;
-		}
-	}
-
-	*,
-	*::before,
-	*::after {
-		box-sizing: border-box;
-	}
-
-	html {
-		font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-		line-height: 1.65;
-		-webkit-text-size-adjust: 100%;
-	}
-
-	body {
-		margin: 0;
-		background: var(--bg);
-		color: var(--fg);
-		font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
-	}
-
-	main {
-		max-width: 42rem;
-		margin: 0 auto;
-		padding: clamp(2rem, 8vh, 5rem) 1.25rem 4rem;
-	}
-
+<style>
+	h1,
 	h2,
 	h3 {
-		line-height: 1.25;
-		text-wrap: balance;
+		font-family: Georgia, 'Times New Roman', serif;
+		font-weight: 600;
+	}
+
+	.hero {
+		display: grid;
+		grid-template-columns: 1.4fr 1fr;
+		column-gap: clamp(2rem, 6vw, 4rem);
+		row-gap: 0;
+		align-items: stretch;
+		padding-block: clamp(3rem, 8vh, 5.5rem) clamp(2.5rem, 6vh, 4rem);
+	}
+
+	h1 {
+		font-size: clamp(2.4rem, 1.7rem + 3.5vw, 3.8rem);
 	}
 
 	h2 {
-		margin-top: 0;
-		font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+		font-size: clamp(1.6rem, 1.3rem + 1.4vw, 2.2rem);
 	}
 
-	h3 {
-		margin-top: 2.5rem;
-		font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
-	}
-
-	p,
-	li {
-		text-wrap: pretty;
-	}
-
-	a {
+	.role {
+		font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
+		font-weight: 600;
 		color: var(--accent);
-		text-underline-offset: 0.2em;
+		margin: 0 0 0.9rem;
 	}
 
-	ul {
-		padding-left: 1.25rem;
+	.cta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+		margin-top: 1.6rem;
 	}
 
-	li + li {
-		margin-top: 0.35rem;
+	.portrait {
+		position: relative;
 	}
 
-	hr {
-		margin: 2.5rem 0 1.5rem;
-		border: 0;
+	.portrait img {
+		position: absolute;
+		top: 0;
+		right: 0;
+		max-width: 100%;
+		max-height: 100%;
+		width: auto;
+		height: auto;
+		border-radius: var(--radius);
+		box-shadow: var(--shadow);
+	}
+
+	.stats {
+		grid-column: 1 / -1;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
+		margin: 2.4rem 0 0;
+		padding-top: 1.5rem;
 		border-top: 1px solid var(--rule);
 	}
 
-	hr + p {
-		font-size: 0.95rem;
-		line-height: 2;
+	.stats dt {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: clamp(1.35rem, 1.1rem + 0.9vw, 1.8rem);
+		font-weight: 600;
 	}
 
-	@media print {
-		body {
-			background: #fff;
-			color: #000;
+	.stats dd {
+		margin: 0.1rem 0 0;
+		color: var(--muted);
+		font-size: 0.9rem;
+	}
+
+	.band {
+		background: var(--surface-2);
+		border-block: 1px solid var(--rule);
+		padding-block: clamp(2.5rem, 6vh, 4rem);
+	}
+
+	.video-wrap {
+		max-width: 64rem;
+		margin: 1.5rem auto 0;
+	}
+
+	.section {
+		padding-block: clamp(2.5rem, 6vh, 4.5rem);
+	}
+
+	.section-head {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.section-head h2 {
+		margin-bottom: 0;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(19rem, 100%), 1fr));
+		gap: 1.1rem;
+	}
+
+	.card {
+		display: flex;
+		flex-direction: column;
+		background: var(--surface);
+		border: 1px solid var(--rule);
+		border-radius: var(--radius);
+		padding: 1.4rem;
+		box-shadow: var(--shadow);
+		transition: transform 0.18s ease, box-shadow 0.18s ease;
+	}
+
+	.card:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 4px 12px rgba(26, 26, 26, 0.08), 0 16px 40px rgba(26, 26, 26, 0.09);
+	}
+
+	.card-top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.9rem;
+	}
+
+	.tag {
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--accent);
+		background: var(--accent-soft);
+		border-radius: 999px;
+		padding: 0.2rem 0.6rem;
+	}
+
+	.year {
+		font-size: 0.8rem;
+		color: var(--muted);
+	}
+
+	.card h3 {
+		margin-bottom: 0.1rem;
+	}
+
+	.meta {
+		color: var(--muted);
+		font-size: 0.85rem;
+		margin: 0 0 0.7rem;
+	}
+
+	.outcome {
+		font-size: 0.95rem;
+		margin: 0 0 1rem;
+	}
+
+	.card .chips {
+		margin-top: auto;
+		overflow: hidden;
+	}
+
+	.card-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	.card-link {
+		font-size: 0.85rem;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.cert-row {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+		gap: 1.1rem;
+	}
+
+	.cert-card {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+		background: var(--surface);
+		border: 1px solid var(--rule);
+		border-radius: var(--radius);
+		padding: 1.5rem;
+		box-shadow: var(--shadow);
+		transition: transform 0.18s ease;
+	}
+
+	.cert-card:hover {
+		transform: translateY(-3px);
+	}
+
+	.badge {
+		display: inline-block;
+		font-size: 0.72rem;
+		font-weight: 700;
+		color: var(--accent);
+		background: var(--accent-soft);
+		border-radius: 999px;
+		padding: 0.2rem 0.6rem;
+		margin-bottom: 0.8rem;
+	}
+
+	.beyond-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+		gap: 1.5rem;
+		margin-top: 1.5rem;
+	}
+
+	.beyond-grid article {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.beyond-grid h3 {
+		margin-bottom: 0.25rem;
+	}
+
+	.beyond-grid .card-link {
+		margin-top: auto;
+		padding-top: 0.8rem;
+	}
+
+	@media (max-width: 860px) {
+		.stats {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		.section-head {
+			flex-direction: column;
+			align-items: start;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.hero {
+			grid-template-columns: 2fr 1fr;
+			column-gap: 1rem;
+			row-gap: 0.75rem;
+			align-items: start;
+		}
+		.intro {
+			display: contents;
+		}
+		.hero h1 {
+			grid-column: 1;
+			grid-row: 1;
+		}
+		.role {
+			grid-column: 1;
+			grid-row: 2;
+			margin-bottom: 0;
+		}
+		.portrait {
+			grid-column: 2;
+			grid-row: 1 / span 2;
+			align-self: stretch;
+			position: relative;
+			overflow: hidden;
+			border-radius: var(--radius);
+			box-shadow: var(--shadow);
+			margin-top: 0;
+		}
+		.portrait img {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 100%;
+			height: 100%;
+			max-width: 100%;
+			max-height: 100%;
+			object-fit: cover;
+			object-position: 50% 28%;
+			border-radius: 0;
+			box-shadow: none;
+			transform: scale(1.5);
+			transform-origin: 50% 28%;
+		}
+		.lede {
+			grid-column: 1 / -1;
+			grid-row: 3;
+		}
+		.cta {
+			grid-column: 1 / -1;
+			grid-row: 4;
+			margin-top: 0.5rem;
+		}
+		.stats {
+			grid-column: 1 / -1;
+			grid-row: 5;
+			margin-top: 1.5rem;
 		}
 	}
 </style>

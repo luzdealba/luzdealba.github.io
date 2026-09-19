@@ -1,0 +1,99 @@
+---
+import { profile, RESUME_PDF_URL } from '../../data/profile.ts';
+
+interface Props {
+	current?: string;
+}
+
+const { current = '' } = Astro.props;
+
+const links = [
+	{ href: '/', label: 'Home', key: 'home' },
+	{ href: '/projects', label: 'Projects', key: 'projects' },
+	{ href: '/certifications', label: 'Certifications', key: 'certifications' },
+	{ href: '/#beyond', label: 'Beyond work', key: 'beyond' },
+];
+---
+
+<header class="site-header no-print">
+	<div class="container inner">
+		<a class="brand" href="/">{profile.name}</a>
+		<nav>
+			{links.map((l) => (
+				<a class:list={[{ active: l.key === current }]} href={l.href}>{l.label}</a>
+			))}
+		</nav>
+		<a class="btn btn-primary" href={RESUME_PDF_URL} download>Résumé ↓</a>
+	</div>
+</header>
+
+<style>
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		background: color-mix(in srgb, var(--bg) 88%, transparent);
+		backdrop-filter: blur(10px);
+		border-bottom: 1px solid var(--rule);
+	}
+
+	.inner {
+		display: flex;
+		align-items: center;
+		gap: 1.25rem;
+		height: 4rem;
+	}
+
+	.brand {
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 1.15rem;
+		font-weight: 600;
+		text-decoration: none;
+		color: var(--fg);
+		white-space: nowrap;
+	}
+
+	nav {
+		display: flex;
+		gap: 1.2rem;
+		margin-left: auto;
+		font-size: 0.92rem;
+	}
+
+	nav a {
+		color: var(--muted);
+		text-decoration: none;
+		padding: 0.3rem 0;
+		border-bottom: 2px solid transparent;
+	}
+
+	nav a:hover,
+	nav a.active {
+		color: var(--fg);
+		border-color: var(--accent);
+	}
+
+	.site-header .btn {
+		padding: 0.45rem 0.95rem;
+	}
+
+	@media (max-width: 820px) {
+		.inner {
+			flex-wrap: wrap;
+			height: auto;
+			padding-block: 0.6rem;
+			row-gap: 0.35rem;
+		}
+		nav {
+			order: 3;
+			width: 100%;
+			margin-left: 0;
+			gap: 1rem;
+			overflow-x: auto;
+			padding-bottom: 0.1rem;
+		}
+		.site-header .btn {
+			margin-left: auto;
+		}
+	}
+</style>

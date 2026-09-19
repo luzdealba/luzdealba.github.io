@@ -1,0 +1,44 @@
+---
+interface Props {
+	id: string;
+	title?: string;
+	label?: string;
+	poster?: string;
+}
+
+const { id, title = 'Intro video', label = 'Watch the 90-second intro' } = Astro.props;
+const poster = Astro.props.poster ?? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+---
+
+<figure class="video-frame">
+	<button
+		class="video-facade"
+		type="button"
+		style={`background-image:url(${poster})`}
+		aria-label={label}
+		data-src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`}
+	>
+		<span>▶ {label}</span>
+	</button>
+</figure>
+
+<script>
+	document.querySelectorAll<HTMLButtonElement>('.video-facade').forEach((btn) => {
+		btn.addEventListener(
+			'click',
+			() => {
+				const frame = btn.closest('.video-frame');
+				const src = btn.dataset.src;
+				if (!frame || !src) return;
+				const iframe = document.createElement('iframe');
+				iframe.src = src;
+				iframe.title = btn.getAttribute('aria-label') ?? 'Video';
+				iframe.allow =
+					'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+				iframe.allowFullscreen = true;
+				frame.replaceChildren(iframe);
+			},
+			{ once: true },
+		);
+	});
+</script>
