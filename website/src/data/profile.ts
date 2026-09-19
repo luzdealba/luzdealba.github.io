@@ -5,11 +5,8 @@ export const VIDEO_ID = 't4O3pI8V49w';
 
 export const profile = {
 	name: 'Emiliano Bazaes',
-	role: 'Software Engineer · Agentic Systems',
+	role: 'Software Engineer · AI Loops · QA',
 	tagline: 'I stress-test agentic loops with evals and harness engineering.',
-	location: 'Chiang Mai, Thailand',
-	origin: 'Buenos Aires, Argentina',
-	availability: 'Open to AI / agentic engineering roles — remote or Chiang Mai',
 	email: 'luzdealba@gmail.com',
 	whatsapp: 'https://wa.me/66902136742',
 	linkedin: 'https://www.linkedin.com/in/emilianche/',
@@ -57,8 +54,8 @@ export const projects: Project[] = [
 		category: 'Ventures & Leadership',
 		outcome: 'Automates compliance workflows for businesses across Southeast Asia.',
 		tech: ['Harness engineering', 'TypeScript', 'Node.js'],
-		url: 'https://demo.anakot.ai/',
-		linkLabel: 'demo.anakot.ai',
+		url: 'https://github.com/anakotai',
+		linkLabel: 'github.com/anakotai',
 		featured: true,
 		year: '2025',
 	},
@@ -162,8 +159,6 @@ export const projects: Project[] = [
 		outcome:
 			'Built the back end for campaigns, banner rotation, cookie management, and segmentation.',
 		tech: ['Linux', 'Apache', 'MySQL', 'PHP'],
-		url: 'https://drive.google.com/file/d/0BykIuP0J6kLHZlN4SzlmdENRc0E/view?usp=sharing',
-		linkLabel: 'DB schema',
 	},
 	{
 		name: 'Telam SE Correspondence DB',
@@ -187,7 +182,7 @@ export const projects: Project[] = [
 		category: 'Software Development',
 		outcome: 'Built a real estate search engine grouping dozens of Argentine agencies with rich filters.',
 		tech: ['Linux', 'Apache', 'MySQL', 'PHP'],
-		url: 'http://www.buscadorprop.com.ar/',
+		url: 'https://www.buscadorprop.com.ar/',
 	},
 	{
 		name: 'The Waston Saving Co. S.A.',
@@ -279,11 +274,11 @@ export const certGroups: CertGroup[] = [
 		docAnchor:
 			'https://docs.google.com/document/d/1nSC5hrvoHY8MDT2mLuhidBZYBx6HPgY62gFsivW6JCQ/edit?tab=t.0#heading=h.32pk68z304mh',
 		items: [
-			{ name: 'Machine Learning', provider: 'Stanford University', url: 'https://drive.google.com/file/d/0BykIuP0J6kLHQURsS2RVMDhFZEU/view' },
+			{ name: 'Machine Learning', provider: 'Stanford University' },
 			{ name: 'Learning from Data', provider: 'California Institute of Technology', url: 'https://verify.edx.org/cert/8a498f4c3dc74aff9cf03498a47c21f0' },
-			{ name: 'Data Analysis and Statistical Inference', provider: 'Duke University', url: 'http://coursera.org/verify/4PNFN9682C' },
+			{ name: 'Data Analysis and Statistical Inference', provider: 'Duke University', url: 'https://coursera.org/verify/4PNFN9682C' },
 			{ name: 'Intro to Statistics', provider: 'UC Berkeley', url: 'https://verify.edx.org/cert/f875e4077df64715ba5a5f4309dddeb1' },
-			{ name: 'An Intro to Interactive Programming in Python', provider: 'Rice University', url: 'http://coursera.org/verify/P6A3YSGBD9' },
+			{ name: 'An Intro to Interactive Programming in Python', provider: 'Rice University', url: 'https://coursera.org/verify/P6A3YSGBD9' },
 			{ name: 'In-Memory Data Management', provider: 'Hasso Plattner Institut' },
 			{ name: 'Linear and Discrete Optimization', provider: 'EPFL' },
 			{ name: 'Linear Algebra through CS Applications', provider: 'Brown University' },
@@ -296,22 +291,16 @@ export const certGroups: CertGroup[] = [
 		docAnchor:
 			'https://docs.google.com/document/d/1nSC5hrvoHY8MDT2mLuhidBZYBx6HPgY62gFsivW6JCQ/edit?tab=t.0#heading=h.71zthe4ex9if',
 		items: [
-			{ name: 'Financial Markets', provider: 'Yale University', url: 'http://coursera.org/verify/PSVHFUAWYZ' },
-			{ name: 'Analyzing Global Trends', provider: 'Wharton School, Penn', url: 'http://coursera.org/verify/ZAE6S6D2M6' },
+			{ name: 'Financial Markets', provider: 'Yale University', url: 'https://coursera.org/verify/PSVHFUAWYZ' },
+			{ name: 'Analyzing Global Trends', provider: 'Wharton School, Penn', url: 'https://coursera.org/verify/ZAE6S6D2M6' },
 			{ name: 'Economics of Money & Banking I & II', provider: 'Barnard College, Columbia' },
 			{ name: 'Financing and Investing in Infrastructure', provider: 'Università Bocconi' },
-			{ name: 'Model Thinking', provider: 'University of Michigan', url: 'http://coursera.org/verify/ZGY37DJPXR' },
+			{ name: 'Model Thinking', provider: 'University of Michigan', url: 'https://coursera.org/verify/ZGY37DJPXR' },
 			{ name: 'Business and Impact Planning for Social Enterprises', provider: 'MIT' },
-			{ name: 'Inspiring Leadership through Emotional Intelligence', provider: 'CWRU', url: 'http://coursera.org/verify/ZWPYQPCFZ4' },
+			{ name: 'Inspiring Leadership through Emotional Intelligence', provider: 'CWRU', url: 'https://coursera.org/verify/ZWPYQPCFZ4' },
 			{ name: 'The DO School Start-Up Lab', provider: 'The DO School' },
 		],
 	},
-];
-
-export const practices = [
-	{ label: 'LLMs', items: ['loops', 'fine-tuning', 'RAG', 'embeddings', 'Fireworks', 'AI Foundry', 'cross-verification'] },
-	{ label: 'QA', items: ['evals', 'docs', 'CodeRabbit', 'context + harness', 'Playwright', 'E2E + property-based testing'] },
-	{ label: 'DevOps', items: ['CI/CD', 'GitHub', 'Linear', 'Linux sysadmin', 'GitHub Actions', 'IaC (Terraform)'] },
 ];
 
 export const beyond = [

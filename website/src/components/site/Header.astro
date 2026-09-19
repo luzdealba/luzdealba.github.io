@@ -15,12 +15,17 @@ const links = [
 ];
 ---
 
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header no-print">
 	<div class="container inner">
 		<a class="brand" href="/">{profile.name}</a>
 		<nav>
 			{links.map((l) => (
-				<a class:list={[{ active: l.key === current }]} href={l.href}>{l.label}</a>
+				<a
+					class:list={[{ active: l.key === current }]}
+					href={l.href}
+					aria-current={l.key === current ? 'page' : undefined}
+				>{l.label}</a>
 			))}
 		</nav>
 		<a class="btn btn-primary" href={RESUME_PDF_URL} download>Résumé ↓</a>
@@ -28,6 +33,22 @@ const links = [
 </header>
 
 <style>
+	.skip-link {
+		position: absolute;
+		top: 0;
+		left: -9999px;
+		z-index: 100;
+		background: var(--surface);
+		color: var(--fg);
+		padding: 0.6rem 1rem;
+		border-radius: 0 0 8px 0;
+		box-shadow: var(--shadow);
+	}
+
+	.skip-link:focus {
+		left: 0;
+	}
+
 	.site-header {
 		position: sticky;
 		top: 0;

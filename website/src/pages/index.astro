@@ -28,11 +28,11 @@ import {
 	<body class="site">
 		<Header current="home" />
 
-		<main>
+		<main id="main">
 			<section class="hero container">
 				<div class="intro">
 					<h1>I'm Emiliano</h1>
-					<p class="role">Software Engineer · AI Loops · QA</p>
+					<p class="role">{profile.role}</p>
 					<p class="lede">
 						{profile.tagline} I built and led engineering for venture-backed products end to end.
 						I've shipped high-availability DevOps and systems that run themselves.
@@ -92,7 +92,7 @@ import {
 							<p class="outcome">{p.outcome}</p>
 							<div class="chips" data-chip-collapse>
 								{p.tech.map((t) => <span class="chip">{t}</span>)}
-								<button class="chip-toggle" type="button" hidden>+0</button>
+								<button class="chip-toggle" type="button" hidden aria-expanded="false">+0</button>
 							</div>
 							<div class="card-links">
 								{p.links
@@ -201,6 +201,8 @@ import {
 
 				chips.forEach((c, i) => (c.hidden = i >= visible));
 				toggle.textContent = `+${hidden}`;
+				toggle.setAttribute('aria-label', `Show ${hidden} more technologies`);
+				toggle.setAttribute('aria-expanded', 'false');
 			}
 
 			function fitAllChips() {
@@ -214,6 +216,7 @@ import {
 					container.dataset.expanded = '1';
 					container.querySelectorAll<HTMLElement>('.chip').forEach((c) => (c.hidden = false));
 					container.style.flexWrap = 'wrap';
+					toggle.setAttribute('aria-expanded', 'true');
 					toggle.hidden = true;
 				});
 			});

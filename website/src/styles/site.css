@@ -71,6 +71,10 @@ p {
 	padding-inline: clamp(1.25rem, 4vw, 3rem);
 }
 
+:target {
+	scroll-margin-top: 5rem;
+}
+
 .eyebrow {
 	text-transform: uppercase;
 	letter-spacing: 0.16em;
@@ -159,7 +163,7 @@ p {
 }
 
 .site .card[data-category='Ventures & Leadership'] {
-	--cat: #b4482a;
+	--cat: #9c3b20;
 	--cat-soft: #f0e2da;
 }
 
@@ -228,44 +232,6 @@ p {
 	padding: 0.7rem 1.2rem;
 	border-radius: 999px;
 	font-weight: 700;
-}
-
-/* README content */
-.readme {
-	font-size: 1.02rem;
-}
-
-.readme h2 {
-	font-size: clamp(1.6rem, 1.3rem + 1.4vw, 2.1rem);
-	margin-top: 2.5rem;
-}
-
-.readme h3 {
-	font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
-	margin-top: 2rem;
-}
-
-.readme ul {
-	padding-left: 1.25rem;
-}
-
-.readme li + li {
-	margin-top: 0.3rem;
-}
-
-.readme hr {
-	margin: 2.5rem 0 1.5rem;
-	border: 0;
-	border-top: 1px solid var(--rule);
-}
-
-.readme hr + p {
-	font-size: 0.95rem;
-	line-height: 2;
-}
-
-.readme-embed:empty {
-	display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
