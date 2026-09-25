@@ -46,7 +46,7 @@ export const projects: Project[] = [
 		url: 'https://github.com/anakotai/harnix',
 		linkLabel: 'github.com/anakotai/harnix',
 		featured: true,
-		year: '2025',
+		year: '2026',
 	},
 	{
 		name: 'Anakot.AI',
