@@ -41,7 +41,7 @@ export const projects: Project[] = [
 		role: 'Creator & Maintainer',
 		category: 'Ventures & Leadership',
 		outcome:
-			'Turns messy repos into agent-ready ones — audits a codebase or org for AI readiness and returns actionable fixes.',
+			'Repos are messy, and AI agents waste whole sessions rediscovering that. Harnix checks what a codebase is missing and tells you what to fix first.',
 		tech: ['TypeScript', 'Node.js', 'Zod', 'Vitest', 'GitHub Actions'],
 		url: 'https://github.com/anakotai/harnix',
 		linkLabel: 'github.com/anakotai/harnix',
@@ -52,7 +52,8 @@ export const projects: Project[] = [
 		name: 'Anakot.AI',
 		role: 'Co-Founder',
 		category: 'Ventures & Leadership',
-		outcome: 'Automates compliance workflows for businesses across Southeast Asia.',
+		outcome:
+			'Thai companies selling to the EU lose contracts to compliance stuff. We automated boring parts, and won the Thai Board of Investment endorsement.',
 		tech: ['Harness engineering', 'TypeScript', 'Node.js'],
 		url: 'https://demo.anakotai.com/',
 		linkLabel: 'demo.anakotai.com',
@@ -64,7 +65,7 @@ export const projects: Project[] = [
 		role: 'CTO',
 		category: 'Ventures & Leadership',
 		outcome:
-			'Architected end to end the platform behind a venture-backed higher-ed tech hub, serving paying enterprise customers.',
+			'Owned the whole thing technically, database to deployment. Grew it to ~2k people, ~300 of them paying vendors, and an investment round.',
 		tech: ['Vue.js', 'Vuetify', 'Algolia', 'Python', 'Django + DRF', 'MySQL', 'Azure', 'AWS', 'CrewAI'],
 		url: 'https://edtechconnect.com/',
 		linkLabel: 'edtechconnect.com',
@@ -75,7 +76,8 @@ export const projects: Project[] = [
 		name: 'Dalo · Aksarapak',
 		role: 'CTO / Owner',
 		category: 'Ventures & Leadership',
-		outcome: 'Shipped an AI-powered learning platform and mobile app used across Southeast Asia.',
+		outcome:
+			'Language learners kept getting stuck with apps that need a connection. Ours works offline, and a few hundred people have learned thousands of words with it.',
 		tech: ['Flutter', 'Dart', 'Azure', 'TypeScript', 'Node.js', 'Astro', 'Playwright', 'LLMs'],
 		url: 'https://dalo.app/',
 		linkLabel: 'dalo.app',
@@ -86,7 +88,7 @@ export const projects: Project[] = [
 		name: 'Schooly.co.il',
 		role: 'DevOps',
 		category: 'Ventures & Leadership',
-		outcome: 'Kept 500+ schools online with high-availability orchestration and auto-scaling.',
+		outcome: 'Kept 500+ schools online with auto-scaling and high availability. It was a one-person ops job.',
 		tech: ['Rancher', 'Kubernetes', 'Docker', 'AWS', 'Nginx'],
 		url: 'https://schooly.co.il/',
 		linkLabel: 'schooly.co.il',
@@ -97,7 +99,7 @@ export const projects: Project[] = [
 		name: 'SitePoint',
 		role: 'Author',
 		category: 'Technical Writing',
-		outcome: 'Wrote deep-dive engineering articles and books read by developers worldwide.',
+		outcome: 'Wrote deep-dive engineering articles and books that developers still come back to.',
 		tech: ['Docker', 'DevOps', 'Cloud computing', 'Deep work'],
 		url: 'https://www.sitepoint.com/author/luzdealba/',
 		linkLabel: 'sitepoint.com/author/luzdealba',
@@ -106,7 +108,6 @@ export const projects: Project[] = [
 			{ label: 'books', url: 'https://www.sitepoint.com/premium/search/?q=lucero' },
 		],
 		featured: true,
-		year: '—',
 	},
 	{
 		name: 'Organisation Development Tools Institute',
@@ -119,7 +120,7 @@ export const projects: Project[] = [
 		name: 'ActionPlanNow',
 		role: 'Lead Developer',
 		category: 'Ventures & Leadership',
-		outcome: 'Built the task-assignment platform for the Texan startup.',
+		outcome: 'Built the task-assignment platform for a legal company in Texas.',
 		tech: ['Django', 'PostgreSQL', 'Allauth'],
 	},
 	{
@@ -134,8 +135,8 @@ export const projects: Project[] = [
 		name: 'Sanke Solutions',
 		role: 'CTO',
 		category: 'Ventures & Leadership',
-		outcome: 'Led web development, programming, and SEO for a British company.',
-		tech: ['PHP', 'HTML', 'CSS', 'SEO'],
+		outcome: 'Ran web development, programming, and SEO for a British company, mostly e-commerce.',
+		tech: ['PHP', 'HTML', 'CSS', 'JS', 'SEO'],
 		url: 'https://www.sankesolutions.co.uk/',
 	},
 	{
@@ -156,8 +157,7 @@ export const projects: Project[] = [
 		name: 'Affiliate Marketing Back-End',
 		role: 'Designer & Implementer',
 		category: 'Software Development',
-		outcome:
-			'Built the back end for campaigns, banner rotation, cookie management, and segmentation.',
+		outcome: 'Designed and built the back end that runs an ad network\'s campaigns, replacing a pile of manual steps.',
 		tech: ['Linux', 'Apache', 'MySQL', 'PHP'],
 		url: 'https://drive.google.com/file/d/0BykIuP0J6kLHZlN4SzlmdENRc0E/view?resourcekey=0-9swYpFz42Cy0n6JJd7jJzA',
 		linkLabel: 'DB schema',
@@ -167,15 +167,15 @@ export const projects: Project[] = [
 		role: 'Developer',
 		category: 'Software Development',
 		outcome:
-			'Built the database and interface for the Argentinian government news agency, with ACLs, auditing, search, and reports.',
-		tech: ['Linux', 'Apache', 'MySQL', 'PHP'],
+			'Built the database and interface for the Argentinian government news agency, so correspondence stopped being a pile of paper. Auditing, search, and reports.',
+		tech: ['Linux', 'Apache', 'MySQL', 'PHP', 'ACLs'],
 	},
 	{
 		name: 'Greenpeace Argentina',
 		role: 'Developer',
 		category: 'Software Development',
 		outcome:
-			'Created the database and interface that let volunteers maintain Toxics Campaign reports from many sources.',
+			'Built the intake DB that let volunteers keep Toxics Campaign reports from many sources in one place.',
 		tech: ['Linux', 'Apache', 'MySQL', 'PHP'],
 	},
 	{
@@ -190,7 +190,8 @@ export const projects: Project[] = [
 		name: 'The Waston Saving Co. S.A.',
 		role: 'Developer',
 		category: 'Software Development',
-		outcome: 'Integrated a public financial-services site with the in-company LAN system.',
+		outcome:
+			'Hooked a public financial-services site up to the in-company LAN, so people could check their own standing instead of phoning the branch.',
 		tech: ['Linux', 'Apache', 'MySQL', 'PHP'],
 	},
 	{
@@ -324,7 +325,7 @@ export const beyond = [
 	},
 	{
 		title: 'Biology roots',
-		body: 'I studied biology before software — probably why I think in systems.',
+		body: 'I studied biology before software, which is probably why I think in systems.',
 	},
 	{
 		title: 'Documentary',
