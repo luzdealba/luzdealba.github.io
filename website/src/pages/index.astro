@@ -8,6 +8,7 @@ import {
 	stats,
 	featuredProjects,
 	certGroups,
+	featuredPublications,
 	beyond,
 	VIDEO_ID,
 	RESUME_PDF_URL,
@@ -20,7 +21,7 @@ import {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta
 			name="description"
-			content="Emiliano Bazaes, software engineer specialising in agentic loops, evals, and harness engineering. Portfolio, projects, and certifications."
+			content="Emiliano Bazaes, software engineer specialising in agentic loops, evals, and harness engineering. Portfolio, projects, publications, and certifications."
 		/>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>Emiliano Bazaes, Software Engineer</title>
@@ -130,6 +131,26 @@ import {
 							</a>
 						))}
 					</div>
+				</div>
+			</section>
+
+			<section id="publications" class="section container">
+				<div class="section-head">
+					<div>
+						<p class="eyebrow">Publications</p>
+						<h2>Three that still get opened.</h2>
+					</div>
+					<a class="btn" href="/publications">See all →</a>
+				</div>
+				<div class="cert-row">
+					{featuredPublications.map((p) => (
+						<a class="cert-card pub-card" data-category={p.topic} href={p.url} target="_blank" rel="noopener">
+							<span class="tag" data-cat={p.topic}>{p.topic}</span>
+							<h3>{p.homeTitle ?? p.title}</h3>
+							<p class="muted">{p.blurb}</p>
+							<span class="card-link">Read on {p.venue} ↗</span>
+						</a>
+					))}
 				</div>
 			</section>
 
@@ -437,6 +458,22 @@ import {
 
 	.cert-card:hover {
 		transform: translateY(-3px);
+	}
+
+	.pub-card {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.pub-card .tag {
+		align-self: flex-start;
+		width: fit-content;
+		margin-bottom: 0.8rem;
+	}
+
+	.pub-card .card-link {
+		margin-top: auto;
+		padding-top: 1rem;
 	}
 
 	.badge {

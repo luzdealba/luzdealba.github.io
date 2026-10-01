@@ -162,19 +162,34 @@ p {
 	display: none;
 }
 
-.site .card[data-category='Ventures & Leadership'] {
+.site [data-category='Ventures & Leadership'] {
 	--cat: #9c3b20;
 	--cat-soft: #f0e2da;
 }
 
-.site .card[data-category='Technical Writing'] {
+.site [data-category='Technical Writing'] {
 	--cat: #2f6f8f;
 	--cat-soft: #dcebf1;
 }
 
-.site .card[data-category='Software Development'] {
+.site [data-category='Software Development'] {
 	--cat: #6a5a8f;
 	--cat-soft: #e9e4f3;
+}
+
+.site [data-category='AI/ML'] {
+	--cat: #9c3b20;
+	--cat-soft: #f0e2da;
+}
+
+.site [data-category='DevOps'] {
+	--cat: #2f6f8f;
+	--cat-soft: #dcebf1;
+}
+
+.site [data-category='Web Development'] {
+	--cat: #3d6b4f;
+	--cat-soft: #e3f0e6;
 }
 
 .site .tag[data-cat] {
