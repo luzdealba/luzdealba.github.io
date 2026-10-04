@@ -310,9 +310,14 @@ export const certGroups: CertGroup[] = [
 	},
 ];
 
-export type PublicationTopic = 'AI/ML' | 'DevOps' | 'Web Development';
+export type PublicationTopic = 'AI/ML' | 'DevOps' | 'PostgreSQL' | 'Web Development';
 
-export const publicationTopics: PublicationTopic[] = ['AI/ML', 'DevOps', 'Web Development'];
+export const publicationTopics: PublicationTopic[] = [
+	'AI/ML',
+	'DevOps',
+	'PostgreSQL',
+	'Web Development',
+];
 
 export type Publication = {
 	title: string;
@@ -407,47 +412,46 @@ export const publications: Publication[] = [
 		topic: 'DevOps',
 	},
 	{
-		title: 'Mastering PostgreSQL Tools: Full-Text Search and Phrase Search',
+		title: 'Full-Text Search and Phrase Search',
 		url: 'https://web.archive.org/web/20171107031702/https://compose.com/articles/mastering-postgresql-tools-full-text-search-and-phrase-search/',
 		date: 'Jul 25, 2017',
 		year: '2017',
 		sort: 20170725,
 		venue: 'Compose.io',
 		kind: 'Tutorial',
-		topic: 'Web Development',
+		topic: 'PostgreSQL',
 		featured: true,
-		homeTitle: 'Full-Text Search and Phrase Search in PostgreSQL',
 		blurb: 'How to make PostgreSQL match phrases, not just a bag of words.',
 	},
 	{
-		title: 'Mastering PostgreSQL Tools: Filters and Foreign Data Wrappers',
+		title: 'Filters and Foreign Data Wrappers',
 		url: 'https://web.archive.org/web/20220118195332/https://compose.com/articles/mastering-postgresql-tools-filters-and-foreign-data-wrappers/',
 		date: 'Jul 7, 2017',
 		year: '2017',
 		sort: 20170707,
 		venue: 'Compose.io',
 		kind: 'Tutorial',
-		topic: 'Web Development',
+		topic: 'PostgreSQL',
 	},
 	{
-		title: 'Faster Operations with the JSONB Data Type in PostgreSQL',
+		title: 'Faster Operations with the JSONB Data Type',
 		url: 'https://web.archive.org/web/20230521160456/https://compose.com/articles/faster-operations-with-the-jsonb-data-type-in-postgresql/',
 		date: 'Mar 20, 2017',
 		year: '2017',
 		sort: 20170320,
 		venue: 'Compose.io',
 		kind: 'Tutorial',
-		topic: 'Web Development',
+		topic: 'PostgreSQL',
 	},
 	{
-		title: 'Store Result Sets with Materialized Views in PostgreSQL',
+		title: 'Store Result Sets with Materialized Views',
 		url: 'https://web.archive.org/web/20171016112718/https://compose.com/articles/store-result-sets-with-materialized-views-in-postgresql/',
 		date: 'Jan 4, 2017',
 		year: '2017',
 		sort: 20170104,
 		venue: 'Compose.io',
 		kind: 'Tutorial',
-		topic: 'Web Development',
+		topic: 'PostgreSQL',
 	},
 	{
 		title: 'Building OHLC Data in PostgreSQL',
@@ -457,7 +461,7 @@ export const publications: Publication[] = [
 		sort: 20161130,
 		venue: 'Compose.io',
 		kind: 'Tutorial',
-		topic: 'Web Development',
+		topic: 'PostgreSQL',
 	},
 	{
 		title: "Formatted SQL in Python with Psycopg's Mogrify",
@@ -467,17 +471,17 @@ export const publications: Publication[] = [
 		sort: 20161010,
 		venue: 'Compose.io',
 		kind: 'Tutorial',
-		topic: 'Web Development',
+		topic: 'PostgreSQL',
 	},
 	{
-		title: 'Faster Performance with Unlogged Tables in PostgreSQL',
+		title: 'Faster Performance with Unlogged Tables',
 		url: 'https://web.archive.org/web/20170724234315/https://compose.com/articles/faster-performance-with-unlogged-tables-in-postgresql/',
 		date: 'Sep 12, 2016',
 		year: '2016',
 		sort: 20160912,
 		venue: 'Compose.io',
 		kind: 'Tutorial',
-		topic: 'Web Development',
+		topic: 'PostgreSQL',
 	},
 	{
 		title: 'Best Backend as a Service (BaaS) in 2024',
@@ -672,7 +676,7 @@ export const publications: Publication[] = [
 ];
 
 const featuredOrder = [
-	'Mastering PostgreSQL Tools: Full-Text Search and Phrase Search',
+	'Full-Text Search and Phrase Search',
 	'How to Debug and Fix Common Docker Issues',
 	'Building and Analyzing Recommender Systems with the Surprise Library',
 ];

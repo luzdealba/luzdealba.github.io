@@ -4,3 +4,10 @@
   status: done
   repo: luzdealba.github.io
   ref: "#2"
+
+- date: 2026-10-04 20:11
+  task: Add a PostgreSQL publication category and shorten mobile nav labels
+  who: Emi
+  status: done
+  repo: luzdealba.github.io
+  ref: "#3"

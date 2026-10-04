@@ -8,11 +8,11 @@ interface Props {
 const { current = '' } = Astro.props;
 
 const links = [
-	{ href: '/', label: 'Home', key: 'home' },
-	{ href: '/projects', label: 'Projects', key: 'projects' },
-	{ href: '/certifications', label: 'Certifications', key: 'certifications' },
-	{ href: '/publications', label: 'Publications', key: 'publications' },
-	{ href: '/#beyond', label: 'Beyond work', key: 'beyond' },
+	{ href: '/', label: 'Home', short: 'Home', key: 'home' },
+	{ href: '/projects', label: 'Projects', short: 'Projects', key: 'projects' },
+	{ href: '/certifications', label: 'Certifications', short: 'Certs', key: 'certifications' },
+	{ href: '/publications', label: 'Publications', short: 'Pubs', key: 'publications' },
+	{ href: '/#beyond', label: 'Beyond work', short: 'Beyond', key: 'beyond' },
 ];
 ---
 
@@ -26,7 +26,7 @@ const links = [
 					class:list={[{ active: l.key === current }]}
 					href={l.href}
 					aria-current={l.key === current ? 'page' : undefined}
-				>{l.label}</a>
+				><span class="label-full">{l.label}</span><span class="label-short">{l.short}</span></a>
 			))}
 		</nav>
 		<a class="btn btn-primary" href={RESUME_PDF_URL} download>Résumé ↓</a>
@@ -95,6 +95,10 @@ const links = [
 		border-color: var(--accent);
 	}
 
+	nav .label-short {
+		display: none;
+	}
+
 	.site-header .btn {
 		padding: 0.45rem 0.95rem;
 	}
@@ -116,6 +120,16 @@ const links = [
 		}
 		.site-header .btn {
 			margin-left: auto;
+		}
+	}
+
+	/* Extra small: shorten nav titles so the row fits without scrolling. */
+	@media (max-width: 480px) {
+		nav .label-full {
+			display: none;
+		}
+		nav .label-short {
+			display: inline;
 		}
 	}
 </style>
