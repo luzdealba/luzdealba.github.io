@@ -18,6 +18,7 @@
   "overrides": {
     "sharp": "0.35.5",
     "source-map-js": "1.2.2",
-    "smol-toml": "1.9.1"
+    "smol-toml": "1.9.1",
+    "http-cache-semantics": "4.3.0"
   }
 }
