@@ -1,0 +1,6 @@
+- date: 2026-10-11 18:56
+  task: Remediate open Dependabot security alerts
+  who: Emi
+  status: started
+  repo: luzdealba.github.io
+  ref: "#8"
