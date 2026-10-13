@@ -19,7 +19,7 @@ export const stats = [
 	{ value: '500+', label: 'schools kept online' },
 	{ value: '80+', label: 'courses & certificates' },
 	{ value: '20+', label: 'years shipping' },
-	{ value: '3×', label: 'founder / CTO' },
+	{ value: '3x', label: 'CTO leading teams' },
 ];
 
 export type Project = {
@@ -242,12 +242,21 @@ export const orderedProjects = [...projects].sort(
 	(a, b) => projectOrder.indexOf(a.name) - projectOrder.indexOf(b.name),
 );
 
+export type CertItem = {
+	/** Plain-text label. `runs` takes over when one row links several certificates. */
+	name: string;
+	provider: string;
+	url?: string;
+	/** Mixed linked/plain segments, used instead of `name`/`url` when present. */
+	runs?: { text: string; url?: string }[];
+};
+
 export type CertGroup = {
 	title: string;
 	blurb: string;
 	count: string;
 	docAnchor: string;
-	items: { name: string; provider: string; url?: string }[];
+	items: CertItem[];
 };
 
 export const certGroups: CertGroup[] = [
@@ -263,11 +272,11 @@ export const certGroups: CertGroup[] = [
 			{ name: 'Model Context Protocol: Advanced Topics', provider: 'Anthropic Academy', url: 'https://anthropic.skilljar.com/model-context-protocol-advanced-topics' },
 			{ name: 'Building toward Computer Use', provider: 'Anthropic · DeepLearning.AI', url: 'https://learn.deeplearning.ai/accomplishments/0855c184-5738-48ba-8499-72ad890cfa33' },
 			{ name: 'Reasoning with o1', provider: 'OpenAI · DeepLearning.AI', url: 'https://learn.deeplearning.ai/accomplishments/8d61a762-37c8-4f88-9bd5-9443f653e5b3' },
-			{ name: 'Multi AI Agent Systems with crewAI', provider: 'CrewAI · DeepLearning.AI' },
+			{ name: 'Multi AI Agent Systems with crewAI', provider: 'CrewAI · DeepLearning.AI', url: 'https://learn.deeplearning.ai/accomplishments/b926d93e-b025-40d9-9356-383329fe6252' },
 			{ name: 'AI Fluency: Framework & Foundations', provider: 'Anthropic Academy', url: 'https://verify.skilljar.com/c/q759i3snuhco' },
 			{ name: 'Agents and Workflows', provider: 'OpenAI Academy', url: 'https://academy.openai.com/home/certificate/u6gg6vwfps' },
-			{ name: 'ACP: Agent Communication Protocol', provider: 'IBM Research BeeAI · DeepLearning.AI' },
-			{ name: 'Building AI Browser Agents', provider: 'AGI Inc. · DeepLearning.AI' },
+			{ name: 'ACP: Agent Communication Protocol', provider: 'IBM Research BeeAI · DeepLearning.AI', url: 'https://learn.deeplearning.ai/accomplishments/f3d14f0a-ef6c-4261-ae41-d0dd7a7e3b53' },
+			{ name: 'Building AI Browser Agents', provider: 'AGI Inc. · DeepLearning.AI', url: 'https://learn.deeplearning.ai/accomplishments/638689bb-a6b6-4070-b8bf-b5a94442e044' },
 		],
 	},
 	{
@@ -286,9 +295,9 @@ export const certGroups: CertGroup[] = [
 			{ name: 'Data Analysis and Statistical Inference', provider: 'Duke University', url: 'https://coursera.org/verify/4PNFN9682C' },
 			{ name: 'Intro to Statistics', provider: 'UC Berkeley', url: 'https://verify.edx.org/cert/f875e4077df64715ba5a5f4309dddeb1' },
 			{ name: 'An Intro to Interactive Programming in Python', provider: 'Rice University', url: 'https://coursera.org/verify/P6A3YSGBD9' },
-			{ name: 'In-Memory Data Management', provider: 'Hasso Plattner Institut' },
-			{ name: 'Linear and Discrete Optimization', provider: 'EPFL' },
-			{ name: 'Linear Algebra through CS Applications', provider: 'Brown University' },
+			{ name: 'In-Memory Data Management', provider: 'Hasso Plattner Institut', url: 'https://drive.google.com/file/d/0BykIuP0J6kLHX05za1puMjRkTGM/view?usp=sharing' },
+			{ name: 'Linear and Discrete Optimization', provider: 'EPFL', url: 'https://drive.google.com/file/d/0BykIuP0J6kLHSXg4RVJMTnR1dEk/view?usp=sharing' },
+			{ name: 'Linear Algebra through CS Applications', provider: 'Brown University', url: 'https://drive.google.com/file/d/0BykIuP0J6kLHRVBYdGU4b1BsaFE/view?usp=sharing' },
 		],
 	},
 	{
@@ -300,12 +309,20 @@ export const certGroups: CertGroup[] = [
 		items: [
 			{ name: 'Financial Markets', provider: 'Yale University', url: 'https://coursera.org/verify/PSVHFUAWYZ' },
 			{ name: 'Analyzing Global Trends', provider: 'Wharton School, Penn', url: 'https://coursera.org/verify/ZAE6S6D2M6' },
-			{ name: 'Economics of Money & Banking I & II', provider: 'Barnard College, Columbia' },
-			{ name: 'Financing and Investing in Infrastructure', provider: 'Università Bocconi' },
+			{
+				name: 'Economics of Money and Banking, Pt. I & Pt. II',
+				provider: 'Barnard College, Columbia',
+				runs: [
+					{ text: 'Economics of Money and Banking, Pt. I', url: 'https://drive.google.com/file/d/0BykIuP0J6kLHWnFrUUxSaDBZdjg/view?usp=sharing' },
+					{ text: ' & ' },
+					{ text: 'Pt. II', url: 'https://drive.google.com/file/d/0BykIuP0J6kLHNEJFQW5jVy0tVVk/view?usp=sharing' },
+				],
+			},
+			{ name: 'Financing and Investing in Infrastructure', provider: 'Università Bocconi', url: 'https://coursera.org/verify/KQ7EYBMPD8' },
 			{ name: 'Model Thinking', provider: 'University of Michigan', url: 'https://coursera.org/verify/ZGY37DJPXR' },
 			{ name: 'Business and Impact Planning for Social Enterprises', provider: 'MIT' },
 			{ name: 'Inspiring Leadership through Emotional Intelligence', provider: 'CWRU', url: 'https://coursera.org/verify/ZWPYQPCFZ4' },
-			{ name: 'The DO School Start-Up Lab', provider: 'The DO School' },
+			{ name: 'The DO School Start-Up Lab', provider: 'The DO School', url: 'https://drive.google.com/file/d/0BykIuP0J6kLHR1h6OEloU04tSWs/view?usp=sharing' },
 		],
 	},
 ];

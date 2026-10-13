@@ -57,7 +57,17 @@ const DOC_URL =
 						{g.items.map((it) => (
 							<li>
 								<span class="name">
-									{it.url ? <a href={it.url} target="_blank" rel="noopener">{it.name}</a> : it.name}
+									{it.runs
+										? it.runs.map((run) =>
+												run.url ? (
+													<a href={run.url} target="_blank" rel="noopener">{run.text}</a>
+												) : (
+													run.text
+												),
+											)
+										: it.url
+											? <a href={it.url} target="_blank" rel="noopener">{it.name}</a>
+											: it.name}
 								</span>
 								<span class="provider">{it.provider}</span>
 							</li>
@@ -98,6 +108,11 @@ const DOC_URL =
 		margin-top: 1.8rem;
 		color: var(--muted);
 		font-size: 0.9rem;
+	}
+
+	.summary > span {
+		flex: 1 1 8rem;
+		text-align: center;
 	}
 
 	.summary strong {
