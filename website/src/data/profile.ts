@@ -216,6 +216,26 @@ export const projects: Project[] = [
 
 export const featuredProjects = projects.filter((p) => p.featured);
 
+/** Home “Selected projects” only. Projects page keeps every entry separate. */
+const homeOmit = new Set(['Harnix', 'Anakot.AI', 'Dalo · Aksarapak', 'SitePoint']);
+
+export const homeProjects: Project[] = [
+	{
+		name: 'Anakot · Harnix',
+		role: 'Co-Founder / Creator & Maintainer',
+		category: 'Ventures & Leadership',
+		outcome:
+			'Thai companies lose EU contracts to compliance stuff. I automated boring parts, and won a Board of Investment endorsement. Harnix is an AI readiness scanner that scores a repo\'s context and ranks gaps.',
+		tech: ['Harness engineering', 'TypeScript', 'Node.js', 'Zod', 'Vitest', 'GitHub Actions'],
+		links: [
+			{ label: 'demo.anakotai.com', url: 'https://demo.anakotai.com/' },
+			{ label: 'github.com/anakotai/harnix', url: 'https://github.com/anakotai/harnix' },
+		],
+		year: '2025–2026',
+	},
+	...featuredProjects.filter((p) => !homeOmit.has(p.name)),
+];
+
 const projectOrder = [
 	'Harnix',
 	'Anakot.AI',

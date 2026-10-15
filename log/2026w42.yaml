@@ -4,3 +4,10 @@
   status: done
   repo: luzdealba.github.io
   ref: "#9"
+
+- date: 2026-10-15 14:43
+  task: Tighten home, publications, and certifications layout
+  who: Emi
+  status: done
+  repo: luzdealba.github.io
+  ref: "#10"

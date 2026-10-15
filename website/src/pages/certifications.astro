@@ -19,11 +19,11 @@ const DOC_URL =
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>Certifications & Training, Emiliano Bazaes</title>
 	</head>
-	<body class="site">
+	<body class="site flush-footer">
 		<Header current="certifications" />
 
-		<main id="main" class="container">
-			<header class="page-head">
+		<main id="main">
+			<header class="page-head container">
 				<p class="eyebrow">Continuous learning</p>
 				<h1>Certifications &amp; Training</h1>
 				<p class="lede">
@@ -42,37 +42,39 @@ const DOC_URL =
 			</header>
 
 			{certGroups.map((g, i) => (
-				<section class:list={['group', { dark: i % 2 === 0 }]}>
-					<div class="group-head">
-						<div>
-							<span class="index">{String(i + 1).padStart(2, '0')}</span>
-							<h2>{g.title}</h2>
-							<p class="muted">{g.blurb}</p>
+				<section class:list={['group', { band: i % 2 === 0 }]}>
+					<div class="container">
+						<div class="group-head">
+							<div>
+								<span class="index">{String(i + 1).padStart(2, '0')}</span>
+								<h2>{g.title}</h2>
+								<p class="muted">{g.blurb}</p>
+							</div>
+							<a class="badge-link" href={g.docAnchor} target="_blank" rel="noopener">
+								See all {g.count} certificates ↗
+							</a>
 						</div>
-						<a class="badge-link" href={g.docAnchor} target="_blank" rel="noopener">
-							See all {g.count} certificates ↗
-						</a>
+						<ul class="items">
+							{g.items.map((it) => (
+								<li>
+									<span class="name">
+										{it.runs
+											? it.runs.map((run) =>
+													run.url ? (
+														<a href={run.url} target="_blank" rel="noopener">{run.text}</a>
+													) : (
+														run.text
+													),
+												)
+											: it.url
+												? <a href={it.url} target="_blank" rel="noopener">{it.name}</a>
+												: it.name}
+									</span>
+									<span class="provider">{it.provider}</span>
+								</li>
+							))}
+						</ul>
 					</div>
-					<ul class="items">
-						{g.items.map((it) => (
-							<li>
-								<span class="name">
-									{it.runs
-										? it.runs.map((run) =>
-												run.url ? (
-													<a href={run.url} target="_blank" rel="noopener">{run.text}</a>
-												) : (
-													run.text
-												),
-											)
-										: it.url
-											? <a href={it.url} target="_blank" rel="noopener">{it.name}</a>
-											: it.name}
-								</span>
-								<span class="provider">{it.provider}</span>
-							</li>
-						))}
-					</ul>
 				</section>
 			))}
 		</main>
@@ -82,13 +84,10 @@ const DOC_URL =
 </html>
 
 <style>
-	main {
-		padding-block: clamp(2.5rem, 6vh, 4rem);
-	}
-
 	.page-head {
 		max-width: 52rem;
-		margin-bottom: 1rem;
+		padding-top: clamp(2.5rem, 6vh, 4rem);
+		margin-bottom: clamp(2rem, 5vh, 3rem);
 	}
 
 	h1,
@@ -128,15 +127,16 @@ const DOC_URL =
 	}
 
 	.group {
-		padding-block: 2rem;
+		padding-block: clamp(2.5rem, 6vh, 4rem);
 	}
 
-	.group.dark {
+	.group.band {
 		background: var(--surface-2);
-		border: 1px solid var(--rule);
-		border-radius: var(--radius);
-		padding: 2rem;
-		margin-block: 1.5rem;
+		border-block: 1px solid var(--rule);
+	}
+
+	.group.band:last-child {
+		border-bottom: none;
 	}
 
 	.group-head {

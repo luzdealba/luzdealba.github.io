@@ -24,6 +24,10 @@ html {
 	-webkit-text-size-adjust: 100%;
 }
 
+body.flush-footer .footer {
+	margin-top: 0;
+}
+
 body {
 	margin: 0;
 	background: var(--bg);

@@ -6,7 +6,7 @@ import '../styles/site.css';
 import {
 	profile,
 	stats,
-	featuredProjects,
+	homeProjects,
 	certGroups,
 	featuredPublications,
 	beyond,
@@ -26,7 +26,7 @@ import {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>Emiliano Bazaes, Software Engineer</title>
 	</head>
-	<body class="site">
+	<body class="site flush-footer">
 		<Header current="home" />
 
 		<main id="main">
@@ -82,7 +82,7 @@ import {
 					<a class="btn" href="/projects">All projects →</a>
 				</div>
 				<div class="grid">
-					{featuredProjects.map((p) => (
+					{homeProjects.map((p) => (
 						<article class="card" data-category={p.category}>
 							<div class="card-top">
 								<span class="tag" data-cat={p.category}>{p.category}</span>
@@ -154,19 +154,21 @@ import {
 				</div>
 			</section>
 
-			<section id="beyond" class="section container">
-				<p class="eyebrow">Beyond work</p>
-				<h2>More than a commit history.</h2>
-				<div class="beyond-grid">
-					{beyond.map((b) => (
-						<article>
-							<h3>{b.title}</h3>
-							<p class="muted">{b.body}</p>
-							{b.url && (
-								<a class="card-link" href={b.url} target="_blank" rel="noopener">{b.linkLabel} ↗</a>
-							)}
-						</article>
-					))}
+			<section id="beyond" class="band">
+				<div class="container">
+					<p class="eyebrow">Beyond work</p>
+					<h2>More than a commit history.</h2>
+					<div class="beyond-grid">
+						{beyond.map((b) => (
+							<article>
+								<h3>{b.title}</h3>
+								<p class="muted">{b.body}</p>
+								{b.url && (
+									<a class="card-link" href={b.url} target="_blank" rel="noopener">{b.linkLabel} ↗</a>
+								)}
+							</article>
+						))}
+					</div>
 				</div>
 			</section>
 		</main>
@@ -343,6 +345,10 @@ import {
 		padding-block: clamp(2.5rem, 6vh, 4rem);
 	}
 
+	#beyond {
+		border-bottom: none;
+	}
+
 	.video-wrap {
 		max-width: 64rem;
 		margin: 1.5rem auto 0;
@@ -445,11 +451,14 @@ import {
 	.cert-row {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-		gap: 1.1rem;
+		column-gap: 1.1rem;
+		row-gap: 0.85rem;
 	}
 
 	.cert-card {
-		display: block;
+		display: grid;
+		grid-template-rows: subgrid;
+		grid-row: span 3;
 		text-decoration: none;
 		color: inherit;
 		background: var(--surface);
@@ -464,31 +473,28 @@ import {
 		transform: translateY(-3px);
 	}
 
+	.cert-card > * {
+		margin: 0;
+	}
+
 	.pub-card {
-		display: flex;
-		flex-direction: column;
+		grid-row: span 4;
 	}
 
 	.pub-card .tag {
-		align-self: flex-start;
+		justify-self: start;
 		width: fit-content;
-		margin-bottom: 0.8rem;
-	}
-
-	.pub-card .card-link {
-		margin-top: auto;
-		padding-top: 1rem;
 	}
 
 	.badge {
-		display: inline-block;
+		justify-self: start;
+		width: fit-content;
 		font-size: 0.72rem;
 		font-weight: 700;
 		color: var(--accent);
 		background: var(--accent-soft);
 		border-radius: 999px;
 		padding: 0.2rem 0.6rem;
-		margin-bottom: 0.8rem;
 	}
 
 	.beyond-grid {
