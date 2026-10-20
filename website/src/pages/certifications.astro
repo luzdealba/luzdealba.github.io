@@ -23,23 +23,25 @@ const DOC_URL =
 		<Header current="certifications" />
 
 		<main id="main">
-			<header class="page-head container">
-				<p class="eyebrow">Continuous learning</p>
-				<h1>Certifications &amp; Training</h1>
-				<p class="lede">
-					80+ verified courses across AI agent engineering, data and computer science, and the
-					economics of building companies; from Anthropic and OpenAI to Stanford, Caltech, Yale, and
-					Wharton.
-				</p>
-				<div class="summary">
-					<span><strong>80+</strong> certificates</span>
-					<span><strong>3</strong> domains</span>
-					<span><strong>30+</strong> institutions</span>
-				</div>
-				<a class="btn btn-primary hero-cta" href={DOC_URL} target="_blank" rel="noopener">
-					View the complete list (80+) ↗
-				</a>
-			</header>
+			<div class="container">
+				<header class="page-head">
+					<p class="eyebrow">Continuous learning</p>
+					<h1>Certifications &amp; Training</h1>
+					<p class="lede">
+						80+ verified courses across AI agent engineering, data and computer science, and the
+						economics of building companies; from Anthropic and OpenAI to Stanford, Caltech, Yale,
+						and Wharton.
+					</p>
+					<div class="summary">
+						<span><strong>80+</strong> certificates</span>
+						<span><strong>3</strong> domains</span>
+						<span><strong>30+</strong> institutions</span>
+					</div>
+					<a class="btn btn-primary hero-cta" href={DOC_URL} target="_blank" rel="noopener">
+						View the complete list (80+) ↗
+					</a>
+				</header>
+			</div>
 
 			{certGroups.map((g, i) => (
 				<section class:list={['group', { band: i % 2 === 0 }]}>
