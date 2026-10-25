@@ -3,3 +3,9 @@
   who: Emi
   status: done
   repo: luzdealba.github.io
+
+- date: 2026-10-25 17:39
+  task: Bump zod to 4.6.7
+  who: Emi
+  status: done
+  repo: luzdealba.github.io
